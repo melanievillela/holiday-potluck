@@ -51,8 +51,16 @@ class App extends Component {
 	}
 
 	removeItem = (itemId) => {
-		const itemsRef = firebase.database().ref(`potluck/${itemId}`);
-		itemsRef.remove();
+		const user = firebase.auth().currentUser;
+		console.log(user)
+		if(user === null) {
+			const warning = document.querySelector(".warning");
+			warning.style.fontSize = "1.05em";
+			setTimeout(function(){ warning.style.fontSize = "1em"; }, 300);
+		} else {
+			const itemsRef = firebase.database().ref(`potluck/${itemId}`);
+			itemsRef.remove();
+		}
 	}
 
 	logInUser = () => {
@@ -71,7 +79,6 @@ class App extends Component {
 				user: null
 			})
 		})
-
 	}
 
 	render() {
@@ -101,7 +108,7 @@ class App extends Component {
 					<br></br>
 					<button>Sign Up!</button> 
 				</React.Fragment>
-					: <p className="warning">You must log in to add you name and dish to the list!</p>
+					: <p className="warning">Please login to make any changes.</p>
 				}				
 			</form>
 	  	</div>

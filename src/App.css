@@ -62,6 +62,10 @@ header {
   min-height: 150px;
 }
 
+.hide {
+  display: none;
+}
+
 input {
   margin: 10px;
   padding: 10px;
@@ -76,7 +80,7 @@ input {
 }
 
 .warning {
-  color: red;
+  color: white;
   font-weight: bold;
   margin: 10px 20px;
 }
